@@ -5,6 +5,10 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
   const userPromise = signUpUser(firstName, lastName);
   const photoPromise = uploadPhoto(fileName);
 
-  const settled = Promise.all([userPromise, photoPromise]).catch(() => {});
-  return settled;
+    return Promise.all([userPromise, photoPromise]).then((success) => {
+	return [ { status: success.status,
+		   value: success.status === 'fulfilled' ? success.value : success.reason,
+		 }
+	       ]
+    }).catch(() => {});
 }
