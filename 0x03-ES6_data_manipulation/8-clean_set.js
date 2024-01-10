@@ -1,8 +1,8 @@
-export default function cleanSet(set, startString) {
+export default function cleanSet(set, startString = '') {
   let mergedString = '';
-  if (startString === '') return '';
+  if (startString === '' || !(typeof startString === 'string')) return '';
   for (const item of set) {
-    if (item.startsWith(startString)) {
+    if (item !== undefined && item.startsWith(startString)) {
       const otherPart = item.slice(startString.length);
       mergedString = mergedString.concat('-', otherPart);
     }
