@@ -1,7 +1,10 @@
 export default class Building {
   /* eslint-disable no-underscore-dangle */
   constructor(sqft) {
-    this._sqft = sqft;
+      this._sqft = sqft;
+      if (this.constructor !== 'Building'){
+	  this.evacuationWarningMessage();
+  }
   }
 
   get sqft() { return this._sqft; }
