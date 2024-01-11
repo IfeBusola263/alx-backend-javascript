@@ -2,9 +2,9 @@ export default class HolbertonCourse {
   /* eslint-disable no-underscore-dangle */
   constructor(name, length, student) {
     // field names can be initialized or not.
-    this._name = name;
-    this._length = length;
-    this._student = student;
+    this._name = this.name(name);
+    this._length = this.length(length);
+    this._student = this.student(student);
   }
 
   get name() {
