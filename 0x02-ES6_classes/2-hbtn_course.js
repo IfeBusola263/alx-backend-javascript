@@ -1,10 +1,16 @@
 export default class HolbertonCourse {
   /* eslint-disable no-underscore-dangle */
+  /* eslint-disable valid-typeof */
+  /* eslint-disable class-methods-use-this */
   constructor(name, length, student) {
     // field names can be initialized or not.
-    this._name = this.name(name);
-    this._length = this.length(length);
-    this._student = this.student(student);
+
+    this._validateType(name, 'string', 'Name');
+    this._validateType(length, 'number', 'Length');
+    this._validateType(student, 'object', 'Student');
+    this._name = name;
+    this._length = length;
+    this._student = student;
   }
 
   get name() {
@@ -34,5 +40,11 @@ export default class HolbertonCourse {
   set student(newStudent) {
     if (!Array.isArray(newStudent)) throw TypeError('Student must be array');
     this._student = newStudent;
+  }
+
+  _validateType(value, expectedType, fieldName) {
+    if (typeof value !== expectedType) {
+      throw new TypeError(`${fieldName} must be of type ${expectedType}`);
+    }
   }
 }
