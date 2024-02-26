@@ -1,43 +1,30 @@
+const fs = require('fs');
+
 module.exports = function countStudents(dbName) {
-  const fs = require('fs');
-  const { parse } = require('csv-parse');
+  try {
+    const data = fs.readFileSync(dbName, { encoding: 'utf8', flag: 'r' });
+    const dataList = data.split('\n').filter((line) => line !== '');
+    dataList.shift();
+    const fieldClass = {};
 
-  const csvData = [];
-  const fieldClass = {};
+    console.log(`Number of students: ${dataList.length}`);
+    dataList.forEach((row) => {
+      const rowData = row.split(',');
+      const fieldName = rowData.pop();
 
-  // Open the CSV File
-  fs.createReadStream(dbName)
-
-    // Check if any error arose
-    .on('error', () => {
-      throw new Error('Cannot load the database');
-    }).pipe(parse()) // parse the csv file as json
-
-    // save the rows in an array
-    .on('data', (csvRow) => {
-      if (csvRow.length !== 0 && !csvRow.includes('field')) csvData.push(csvRow);
-    })
-    .on('end', () => {
-      // Log the number of students
-      console.log(`Number of students: ${csvData.length}`);
-
-      // Create an object of field to students
-      csvData.forEach((row) => {
-        // get the field name
-        const fieldName = row.pop();
-
-        // set an array of names in the same field
-        if (!fieldClass[fieldName]) fieldClass[fieldName] = [];
-        fieldClass[fieldName].push(row[0]);
-      });
-
-      // log the information for each field
-      for (const [field, names] of Object.entries(fieldClass)) {
-        const numOfStudents = names.length;
-        const nameAsString = names.join(', ');
-        console.log(
-          `Number of students in ${field}: ${numOfStudents}. List: ${nameAsString}`,
-        );
-      }
+      if (!fieldClass[fieldName]) fieldClass[fieldName] = [];
+      fieldClass[fieldName].push(rowData[0]);
     });
+
+    for (const [field, names] of Object.entries(fieldClass)) {
+      const numOfStudents = names.length;
+      const nameAsString = names.join(', ');
+      console.log(
+        `Number of students in ${field}: ${numOfStudents}. List: ${nameAsString}`,
+      );
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error('Cannot load the database');
+  }
 };
