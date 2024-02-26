@@ -1,7 +1,7 @@
-const fs = require('fs');
-const { parse } = require('csv-parse');
-
 module.exports = function countStudents(dbName) {
+  const fs = require('fs');
+  const { parse } = require('csv-parse');
+
   const csvData = [];
   const fieldClass = {};
 
