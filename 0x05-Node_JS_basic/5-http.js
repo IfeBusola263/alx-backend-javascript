@@ -5,7 +5,7 @@ const host = 'localhost';
 const port = 1245;
 const file = process.argv[2];
 
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
   if (req.url === '/') {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
