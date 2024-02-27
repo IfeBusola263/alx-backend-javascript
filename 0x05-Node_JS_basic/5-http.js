@@ -10,7 +10,7 @@ const app = http.createServer(async (req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    fs.readFile(file, 'utf8', (err, data) => {
+    await fs.readFile(file, 'utf8', (err, data) => {
       res.setHeader('Content-Type', 'text/plain');
 
       if (err) {
