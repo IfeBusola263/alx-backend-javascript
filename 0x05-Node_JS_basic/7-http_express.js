@@ -4,23 +4,25 @@ const fs = require('fs');
 const host = 'localhost';
 const port = 1245;
 const app = express();
-const file = process.argv[2];
+const file = process.argv[2] || 'database.csv';
 module.exports = app;
 
 app.get('/', (req, res) => {
-    res.status(200).send('Hello Holberton School!');
+  res.status(200).send('Hello Holberton School!');
 });
 
-app.get('/students', async (req, res) => {
-    await fs.readFile(file, 'utf8', (err, data) => {
-	if (err) {
-	    res.status(500).send('Cannot load the database');
-	    return;
-	}
-	const studentsInfo = data.split('\n').filter((line) => line.trim() != '');
-	studentsInfo.shift();
-	const numOfStudents = studentsInfo.length;
-	let resInfo = `This is the list of our students
+app.get('/students', (req, res) => {
+  const myPromise = new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      const studentsInfo = data.split('\n').filter((line) => line.trim() !== '');
+      studentsInfo.shift();
+      const numOfStudents = studentsInfo.length;
+      let resInfo = `This is the list of our students
 Number of students: ${numOfStudents}\n`;
       const studentsInField = {};
 
@@ -39,8 +41,17 @@ Number of students: ${numOfStudents}\n`;
         const fieldInfo = `Number of students in ${field}: ${numStudents}. List: ${names}\n`;
         resInfo += fieldInfo;
       }
-	res.status(200).send(resInfo.slice(0, -1));
+      resolve(resInfo);
+    });
+  });
+
+  myPromise
+    .then((resInfo) => {
+      res.status(200).send(resInfo.slice(0, -1));
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send('Cannot load the database');
     });
 });
-
 app.listen(port, host);

@@ -3,16 +3,14 @@ const fs = require('fs');
 
 const host = 'localhost';
 const port = 1245;
-const file = process.argv[2];
+const file = process.argv[2] || 'database.csv';
 
-const app = http.createServer(async (req, res) => {
+const app = http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
-    res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    await fs.readFile(file, 'utf8', (err, data) => {
-      res.setHeader('Content-Type', 'text/plain');
-
+    fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
         res.statusCode = 500;
         res.end('Cannot load the database');
