@@ -20,11 +20,10 @@ module.exports = function countStudents(dbName) {
       const numOfStudents = names.length;
       const nameAsString = names.join(', ');
       console.log(
-        `Number of students in ${field}: ${numOfStudents}. List: ${nameAsString}`,
+        `Number of students in ${field}: ${numOfStudents}. List: ${nameAsString}`
       );
     }
   } catch (error) {
-    console.log(error);
     throw new Error('Cannot load the database');
   }
 };
