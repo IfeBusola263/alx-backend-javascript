@@ -51,7 +51,7 @@ Number of students: ${numOfStudents}\n`;
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).send('Cannot load the database');
+      res.status(500).send('This is the list of our students\nCannot load the database');
     });
 });
 app.listen(port, host);
