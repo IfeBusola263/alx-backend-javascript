@@ -1,5 +1,6 @@
 // const path = require('path');
 const readDatabase = require('../utils');
+
 const db = process.argv[2];
 
 export default class StudentsController {
@@ -30,7 +31,7 @@ export default class StudentsController {
     const majorList = ['CS', 'SWE'];
 
     if (!majorList.includes(major)) {
-      response.status(500).send(`Major parameter must be CS or SWE`);
+      response.status(500).send('Major parameter must be CS or SWE');
       return;
     }
     // readDatabase returns a promise, so it must be resolved

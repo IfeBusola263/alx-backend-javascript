@@ -5,7 +5,7 @@ module.exports = function readDatabase(db) {
     fs.readFile(db, 'utf8', (err, data) => {
       if (err) {
         reject(err);
-        return;
+        // return;
       }
 
       const studentsInfo = data.split('\n').filter((line) => line.trim() !== '');
