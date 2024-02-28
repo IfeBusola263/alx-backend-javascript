@@ -1,6 +1,6 @@
 const readDatabase = require('../utils');
 
-const db = process.argv[2].slice(2);
+const db = process.argv[2];
 // const db = 'database.csv';
 // console.log(db.slice(2));
 
@@ -8,7 +8,7 @@ export default class StudentsController {
   static getAllStudents(request, response) {
     // readDatabase returns a promise, so it must be resolved
     // expecting an object of field mapped to a list of names
-    readDatabase(db)
+    readDatabase('database.csv')
       .then((fieldToStudents) => {
         let resInfo = 'This is the list of our students\n';
 
