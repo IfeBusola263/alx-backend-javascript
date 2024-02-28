@@ -1,6 +1,7 @@
 const readDatabase = require('../utils');
 
-const db = process.argv[2];
+// const db = process.argv[2];
+const db = 'database.csv';
 
 export default class StudentsController {
   static getAllStudents(request, response) {
@@ -20,7 +21,7 @@ export default class StudentsController {
         response.status(200).send(resInfo.slice(0, -1));
       })
       .catch(() => {
-        response.status(500).send('This is the list of our students\nCannot load the database');
+        response.status(500).send('Cannot load the database');
       });
   }
 
