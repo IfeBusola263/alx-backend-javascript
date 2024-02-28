@@ -8,7 +8,7 @@ export default class StudentsController {
   static getAllStudents(request, response) {
     // readDatabase returns a promise, so it must be resolved
     // expecting an object of field mapped to a list of names
-    readDatabase('database.csv')
+    readDatabase(db)
       .then((fieldToStudents) => {
         let resInfo = 'This is the list of our students\n';
 
