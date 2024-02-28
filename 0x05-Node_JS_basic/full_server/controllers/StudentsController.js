@@ -1,12 +1,13 @@
-const path = require('path');
+// const path = require('path');
 const readDatabase = require('../utils');
 
-const db = path.resolve(__dirname, '../../database.csv');
+// const db = path.resolve(__dirname, '../../database.csv');
 
 export default class StudentsController {
   static getAllStudents(request, response) {
     // readDatabase returns a promise, so it must be resolved
-    readDatabase(db)
+    // readDatabase(db)
+    readDatabase('database.csv')
 
     // expecting an object of field mapped to a list of names
       .then((fieldToStudents) => {
@@ -35,7 +36,8 @@ export default class StudentsController {
       return;
     }
     // readDatabase returns a promise, so it must be resolved
-    readDatabase(db)
+    // readDatabase(db)
+    readDatabase('database.csv')
 
     // expecting an object of field mapped to a list of names
       .then((fieldToStudents) => {
