@@ -1,4 +1,3 @@
-// const path = require('path');
 const readDatabase = require('../utils');
 
 const db = process.argv[2];
@@ -6,9 +5,8 @@ const db = process.argv[2];
 export default class StudentsController {
   static getAllStudents(request, response) {
     // readDatabase returns a promise, so it must be resolved
-    readDatabase(db)
-
     // expecting an object of field mapped to a list of names
+    readDatabase(db)
       .then((fieldToStudents) => {
         let resInfo = 'This is the list of our students\n';
 
@@ -35,6 +33,7 @@ export default class StudentsController {
       return;
     }
     // readDatabase returns a promise, so it must be resolved
+    // expecting an object of field mapped to a list of names
     readDatabase(db)
       .then((fieldToStudents) => {
         // let resInfo = 'This is the list of our students\n';
