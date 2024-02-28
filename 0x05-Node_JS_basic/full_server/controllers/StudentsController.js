@@ -1,11 +1,12 @@
 const readDatabase = require('../utils');
 
-const db = process.argv[2];
+// const db = process.argv[2];
 
 export default class StudentsController {
   static getAllStudents(request, response) {
     // readDatabase returns a promise, so it must be resolved
-    readDatabase(db)
+    // readDatabase(db)
+    readDatabase('database.csv')
 
     // expecting an object of field mapped to a list of names
       .then((fieldToStudents) => {
@@ -34,7 +35,8 @@ export default class StudentsController {
       return;
     }
     // readDatabase returns a promise, so it must be resolved
-    readDatabase(db)
+    readDatabase('database.csv')
+    // readDatabase(db)
 
     // expecting an object of field mapped to a list of names
       .then((fieldToStudents) => {
