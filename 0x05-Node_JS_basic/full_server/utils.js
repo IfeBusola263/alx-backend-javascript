@@ -3,7 +3,10 @@ const fs = require('fs');
 module.exports = function readDatabase(db) {
   return new Promise((resolve, reject) => {
     fs.readFile(db, 'utf8', (err, data) => {
-      if (err) reject(err);
+      if (err) {
+        reject(err);
+        return;
+      }
 
       const studentsInfo = data.split('\n').filter((line) => line.trim() !== '');
       studentsInfo.shift();
