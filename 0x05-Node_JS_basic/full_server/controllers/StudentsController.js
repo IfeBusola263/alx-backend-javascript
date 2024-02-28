@@ -1,7 +1,7 @@
 const readDatabase = require('../utils');
 
-// const db = process.argv[2];
-const db = 'database.csv';
+const db = process.argv[2].toString();
+// const db = 'database.csv';
 
 export default class StudentsController {
   static getAllStudents(request, response) {
