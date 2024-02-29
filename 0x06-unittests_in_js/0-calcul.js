@@ -1,3 +1,3 @@
 module.exports = function calculateNumber (a, b) {
-  return Math.ceil(a) + Math.ceil(b);
+  return Math.round(a) + Math.round(b);
 };
