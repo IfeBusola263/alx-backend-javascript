@@ -3,7 +3,7 @@ const calculateNumber = require('./0-calcul.js');
 
 describe('calculateNumber', function () {
     it('should round 3 and 4 to give 7', function () {
-	assert.strictEqual(calculateNumber(3, 4), 7);
+	assert.strictEqual(calculateNumber(-3, 4), 1);
     });
 
     it('should round 3.5 and 4.2 to give 9', function () {
@@ -14,7 +14,7 @@ describe('calculateNumber', function () {
     });
 
     it('should round -3.5 and -7.2 to give 5', function () {
-	assert.strictEqual(calculateNumber(-3.5, 7.2), 5);
+	assert.strictEqual(calculateNumber(-3.5, -7.2), -10);
     });
 
     it('should round 0 and -20.9 to give -20', function () {
