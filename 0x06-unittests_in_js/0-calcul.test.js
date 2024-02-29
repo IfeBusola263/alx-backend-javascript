@@ -21,4 +21,3 @@ describe('calculateNumber', function () {
 	assert.strictEqual(calculateNumber(0, -20.9), -20);
     });
 });
-	
