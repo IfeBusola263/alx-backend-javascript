@@ -4,7 +4,7 @@ const calculateNumber = require('./1-calcul');
 
 describe("calculateNumber", function () {
     it("Should add a and b if type is SUM", function () {
-	assert.strictEqual(calculateNumber('SUM', -1.2, -3.3), -4);
+	assert.strictEqual(calculateNumber('SUM', 1.2, 3), 4);
 	assert.strictEqual(calculateNumber('SUM', -5.8, -3.3), -9);
 	assert.strictEqual(calculateNumber('SUM', -1.2, 3.3), 2);
 	assert.strictEqual(calculateNumber('SUM', 1.2, -3.3), -2);

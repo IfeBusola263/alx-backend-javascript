@@ -11,7 +11,7 @@ describe('calculateNumber', function () {
     });
 
     it('should round 3 and 4 to give 1', function () {
-	assert.strictEqual(calculateNumber(-3, 4), 1);
+	assert.strictEqual(calculateNumber(-3.3, 4), 1);
     });
 
     it('should round 3.5 and 4.2 to give 8', function () {
