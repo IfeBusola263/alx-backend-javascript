@@ -5,14 +5,15 @@ const assert = require('assert');
 
 describe('getPaymentTokenFromAPI(true)', function () {
     it('should test the output of the function', async function () {
-	return new Promise((resolve) => {
+	return new Promise((resolve, reject) => {
 
 	    getPaymentTokenFromAPI(true)
-		.then(data => {
-		    assert.ok(data);
-		    expect(data).to.deep.equal({data: 'Successful response from the API' });
-		});
-	    resolve();
+		.then((resp) => {
+		    assert.ok(resp);
+		    expect(resp).to.deep.equal({data: 'Successful response from the API' });
+		    expect(resp.data).to.be.equal('Successful response from the API');
+		    resolve();
+		}).catch(err => {reject(err)});
 	});
     });
 
