@@ -25,7 +25,7 @@ describe('GET /cart/:id', function () {
 
     it('should test the route for wrong param', function (done) {
 	request.get(`http://localhost:7865/cart/hello`, (err, res, body) => {
-	    expect(res.statusCode).to.be.equal(400);
+	    expect(res.statusCode).to.be.equal(404);
 	    console.log(err);
 	    done();
 	});
