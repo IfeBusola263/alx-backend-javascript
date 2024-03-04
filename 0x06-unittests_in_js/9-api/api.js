@@ -8,6 +8,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cart/:id([0-9]+)', (req, res) => {
+    const id = req.params.id
     res.status(200).send(`Payment methods for cart ${id}`);
 });
 
